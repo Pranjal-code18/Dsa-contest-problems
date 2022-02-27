@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        int count=0;
+        unordered_map<char,int>m;
+        unordered_map<char,int>mp;
+        for(int i=0 ; i<s.length() ; i++)m[s[i]]++;
+        for(int j=0 ; j<t.length() ; j++)mp[t[j]]++;
+        for(auto pr:m){
+            if(mp.find(pr.first)==mp.end())count+=pr.second;
+            if(mp.find(pr.first)!=mp.end()){
+                for(auto pie:mp){
+                    int a=(pie.second-pr.second);
+                    if(a<0){a=a*(-1);}
+                    if(pr.first==pie.first)count+=a;
+                }
+            }
+        }
+        for(auto p:mp){
+            if(m.find(p.first)==m.end())count+=p.second;
+        }
+        return count;
+    }
+};
