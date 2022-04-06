@@ -1,0 +1,18 @@
+int numberOfOperations(int X , int Y , int count){
+if(X==Y){return count;}
+  if(X>Y){
+int Z=abs(X-Y);
+if(Z%2==0){return numberOfOperations(X-=Z , Y , count+1);}
+else{return numberOfOperations(X-=Z+1 , Y , count+1);}
+   }
+else if(X<Y){
+ int Z = abs(X-Y);
+if(Z%2!=0){return numberOfOperations(X+=Z , Y ,count+1);}
+else{return numberOfOperations(X+=abs(X-Y)-1,Y,count+1);}
+     }
+}
+int makeItEqual(int X, int Y)
+{
+    int count=0;
+    return numberOfOperations( X ,  Y , count);
+}
